@@ -16,22 +16,22 @@
 //#define __OPENCL_NO_ERROR_CHECKING
 
 #ifdef __OPENCL_NO_ERROR_CHECKING
-#define CheckCLError(__errNum__, __failMsg__, __passMsg__)	\
+#define CheckCLError(__errNum__, __failMsg__, __passMsg__)      \
 	assert (CL_SUCCESS == __errNum__);
 #else
-#define CheckCLError(__errNum__, __failMsg__, __passMsg__)	\
-if (CL_SUCCESS != __errNum__)								\
-{															\
-		char __msgBuf__[256];								\
+#define CheckCLError(__errNum__, __failMsg__, __passMsg__)      \
+if (CL_SUCCESS != __errNum__)				        \
+{						                \
+		char __msgBuf__[256];			        \
 		sprintf (__msgBuf__, "CL Error num %d: %s at line %d, file %s in function %s().\n", __errNum__, __failMsg__, __LINE__, __FILE__, __FUNCTION__);	\
-		printf (__msgBuf__);								\
-		getchar();											\
-		printf("Failed on OpenCLError\n");					\
-		assert (CL_SUCCESS != __errNum__);					\
-		exit(0);											\
-} else if (__passMsg__)										\
-{															\
-	printf("CL Success: %s\n", __passMsg__);				\
+		printf (__msgBuf__);                            \
+		getchar();                                      \
+		printf("Failed on OpenCLError\n");              \
+		assert (CL_SUCCESS != __errNum__);              \
+		exit(0);                                        \
+} else if (__passMsg__)                                         \
+{                                                               \
+	printf("CL Success: %s\n", __passMsg__);                \
 }				
 #endif
 
